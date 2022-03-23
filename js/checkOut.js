@@ -42,3 +42,11 @@ function display_all() {
         }
     }
 }
+
+myTable += "</table>";
+// myTable += "<br/><br/><p>Total: " + totalOrderAmt + "</p>";
+
+
+
+// document.write(myTable);
+document.getElementById("demo").innerHTML = myTable;
