@@ -19,3 +19,26 @@ function display_all() {
         myTable += "<td><button onclick='add_selection(" + i + ")'>Add</button></td>";
         myTable += "<td><button onclick='remove_selection(" + i + ")'>Remove</button></td>";
     }
+
+    function add_selection(x) {
+        console.log(x);
+        quantities[x] = quantities[x] + 1;
+        totals[x] = prices[x] * quantities[x];
+        totalOrderAmt += prices[x];
+
+        display_all();
+    }
+
+    function remove_selection(x) {
+
+        if (quantities[x] > 0) {
+            console.log(x);
+            quantities[x] = quantities[x] - 1;
+            totals[x] = prices[x] * quantities[x];
+            totalOrderAmt -= prices[x];
+
+            display_all();
+
+        }
+    }
+}
