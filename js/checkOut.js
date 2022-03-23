@@ -1,3 +1,43 @@
+var nums = [1, 2, 3, 4];
+var items = [" Stock 9 inch Barrel : V", "Body Armour level", "Byrna CO2 Gas containers", "Empire Helix"];
+var prices = [7.5, 9.5, 8.5, 7.5];
+var quantities = [0, 0, 0, 0];
+var totals = [0.0, 0.0, 0.0, 0.0];
+var totalOrderAmt = 0;
+
+var checkOutPrice = document.getElementById("checkOutButton");
+checkOutPrice.addEventListener("click", displayTotal);
+
+
+function add_selection(x) {
+    console.log(x);
+    quantities[x] = quantities[x] + 1;
+    totals[x] = prices[x] * quantities[x];
+    totalOrderAmt += prices[x];
+
+    display_all();
+}
+
+function remove_selection(x) {
+
+    if (quantities[x] > 0) {
+        console.log(x);
+        quantities[x] = quantities[x] - 1;
+        totals[x] = prices[x] * quantities[x];
+        totalOrderAmt -= prices[x];
+
+        display_all();
+
+    }
+
+}
+
+function displayTotal() {
+
+    document.getElementById("total").innerHTML = "<br/><br/>Total order amount is R" + totalOrderAmt.toFixed(2);
+}
+
+
 function display_all() {
 
 
@@ -20,33 +60,17 @@ function display_all() {
         myTable += "<td><button onclick='remove_selection(" + i + ")'>Remove</button></td>";
     }
 
-    function add_selection(x) {
-        console.log(x);
-        quantities[x] = quantities[x] + 1;
-        totals[x] = prices[x] * quantities[x];
-        totalOrderAmt += prices[x];
+    myTable += "</table>";
+    // myTable += "<br/><br/><p>Total: " + totalOrderAmt + "</p>";
 
-        display_all();
-    }
 
-    function remove_selection(x) {
 
-        if (quantities[x] > 0) {
-            console.log(x);
-            quantities[x] = quantities[x] - 1;
-            totals[x] = prices[x] * quantities[x];
-            totalOrderAmt -= prices[x];
+    // document.write(myTable);
+    document.getElementById("demo").innerHTML = myTable;
 
-            display_all();
 
-        }
-    }
 }
 
-myTable += "</table>";
-// myTable += "<br/><br/><p>Total: " + totalOrderAmt + "</p>";
-
-
-
-// document.write(myTable);
-document.getElementById("demo").innerHTML = myTable;
+window.onload = function() {
+    display_all();
+}
